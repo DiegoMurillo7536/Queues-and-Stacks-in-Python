@@ -24,7 +24,7 @@ class Stack:
         return self.data_list[-1]
     
     def pop(self):
-        self.data_list.pop()
+        return self.data_list.pop()
 
     def get_stack_exercises(self):
         print("==== Start stack exercises ====")
