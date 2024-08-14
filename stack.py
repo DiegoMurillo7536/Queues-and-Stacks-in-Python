@@ -1,51 +1,40 @@
+import utils
 import random
-data_list = []
-def insert_random_data_into_list(quantity):
-    count = 0
-    while count < quantity:
-        value = random.randint(1,quantity)
-        data_list.append(value)
-        count += 1
-
-
-def search_even_numbers_into_list(data_list):
-    count = 0
-    even_numbers = 0
+class Stack:
+    def __init__(self) -> None:
+        self.data_list : list = []
     
-    while count < len(data_list):
-        if  data_list[count] % 2 == 0:
-           print(f"{data_list[count]} is even")
-           even_numbers += 1
-        count += 1
-    print(f"The even numbers quantity is {even_numbers}")
+    def insert_random_data_into_list(self,quantity : int):
+        count = 0
+        while count < quantity:
+            value = random.randint(1,quantity)
+            self.data_list.append(value)
+            count += 1
+    
+    def empty(self) -> bool:
+        if self.data_list is None:
+            print(f"The list is empty")
+            return True
+        
+    def size(self) -> int:
+        if self.empty(self.data_list):
+            return len(self.data_list)
+    
+    def top(self) -> int :
+        return self.data_list[-1]
+    
+    def pop(self):
+        self.data_list.pop()
 
-def average_data_list_without_functions(data_list):
-    count = 0
-    addition = 0
-    data_quantity = len(data_list)
-    while count < data_quantity:
-        addition += data_list[count]
-        count += 1
-    average_data = addition / data_quantity
-    print(f"The average data is {average_data}")
+    def get_stack_exercises(self):
+        print("==== Start stack exercises ====")
+        util = utils
+        random_quantity = int(input("Insert the random quantity numbers that you want "))
+        self.insert_random_data_into_list(random_quantity)
+        print(f" The random numbers into list is: {self.data_list}")
+        util.search_even_numbers_into_list(self.data_list)
+        util.average_data_list_without_functions(self.data_list)
+        util.average_data_list_with_functions(self.data_list)
+        print(f"The last item in the  stack is: {self.top()}")
+        print("==== End stack exercises =====")
 
-def average_data_list_with_functions(data_list):
-    print(f"The average data is {sum(data_list)/len(data_list)} ")
-
-def last_number_in_data_list_with_negative_call(data_list):
-    print(f"The last number in the list is {data_list[-1]}")
-
-
-def last_number_in_data_list_without_negative_call(data_list):
-    data_quantity = len(data_list) - 1
-    last_number = data_list[data_quantity]
-    print(f"The last number in the index is {last_number}")
-
-insert_random_data_into_list(20)
-print(data_list)
-search_even_numbers_into_list(data_list)
-
-average_data_list_without_functions(data_list)
-average_data_list_with_functions(data_list)
-last_number_in_data_list_with_negative_call(data_list)
-last_number_in_data_list_without_negative_call(data_list)

@@ -1,26 +1,41 @@
 import random
 from faker import Faker
 
-person_data = []
-fake = Faker()
+class Queue:
+    def __init__(self) -> None:
+        self.person_data = []
+        self.fake = Faker()
 
-def insert_random_data_into_list(quantity:int):
-    count = 0
-    while count < quantity:
-        data = [
-            fake.unique.random_int(min=1,max=quantity), # code 
-            fake.name(), # name
-            fake.phone_number(), # phone number
-            random.randint(0,100) # age
-            ]
-        person_data.append(data)
-        count += 1
-def remove_first_item_in_list(data_list:list):
-    data_list.pop(0)
+    def enqueue(self,quantity:int):
+        count = 0
+        while count < quantity:
+            data = [
+                self.fake.unique.random_int(min=1,max=quantity), # code 
+                self.fake.name(), # name
+                self.fake.phone_number(), # phone number
+                random.randint(0,100) # age
+                ]
+            self.person_data.append(data)
+            count += 1
 
+    def dequeue(self):
+        if len(self.person_data) > 0: 
+            self.person_data.pop(0)
 
-insert_random_data_into_list(5)
-print(f"Full queue: {person_data}")
-remove_first_item_in_list(person_data)
-print(f" Queue without first element: {person_data}")
-print(len(person_data))
+    def front(self):
+        if len(self.person_data) > 0:
+            print(f" The first element in the queue is:{self.person_data[0]}")
+
+    def rear(self):
+            if len(self.person_data) > 0:
+                print(f" The last element in the queue is:{self.person_data[-1]}")
+
+    def get_queues_exercises(self):
+        print("==== Start queue exercises ====")
+        random_quantity = int(input("¿How many random persons do you want to insert? "))
+        self.enqueue(random_quantity)
+        print(f"Full queue: {self.person_data}")
+        self.dequeue()
+        print(f" Queue without first element: {self.person_data}")
+        print(len(self.person_data))
+        print("==== End queue exercises ====")
